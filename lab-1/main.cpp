@@ -197,9 +197,8 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                     break;
                  }
 
-
                  case SC_CLOSE: {
-                    if (MessageBox (hwnd, "Willst du es wirklich schlieﬂen?", "Achtung !", MB_YESNO) == IDYES)
+                    if (MessageBox (hwnd, "Willst du es wirklich schlie√üen?", "Achtung !", MB_YESNO) == IDYES)
                         exit (0);
                     break;
                  }
