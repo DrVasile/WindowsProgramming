@@ -95,7 +95,6 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     static HWND edit1;
     static HWND edit2;
     static HGDIOBJ fontDefault;
-    static bool textFlagRed, textFlagBlue, textFlagGreen;
 
     /* handle the messages */
     switch (message) {
