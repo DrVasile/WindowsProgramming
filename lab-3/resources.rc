@@ -1,0 +1,4 @@
+#include <windows.h>
+#include "macros.h"
+
+IDR_ICON ICON "PaintIcon.ico"
