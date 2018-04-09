@@ -83,7 +83,7 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
     static HPEN hPen;
     static HPEN eraserPen;
     static HBRUSH hBrush;
-    static POINT arrPoints[4];
+    static POINT arrPoints[10];
     static POINTS client;
     static POINTS ptsBegin;
     static POINTS ptsEnd;
@@ -189,7 +189,7 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
                 break;
 
             if (Button_GetCheck(splineTool) == BST_UNCHECKED)
-                isDrawingSpline = FALSE;
+                isDrawingSpline = FALSE, cntPoints = 0;
 
             SetCapture(hwnd);
             GetClientRect(hwnd, &rcClient);
@@ -251,7 +251,7 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 				isDrawing = TRUE;
 			}
 			if (Button_GetCheck(splineTool) == BST_CHECKED) {
-                DrawPen(hwnd, hdc, ptsBegin, ptsEnd);
+                //DrawPen(hwnd, hdc, ptsBegin, ptsEnd);
                 arrPoints[cntPoints].x = LOWORD(lParam);
                 arrPoints[cntPoints].y = HIWORD(lParam);
                 cntPoints++;
@@ -264,7 +264,7 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 
         case WM_RBUTTONDOWN: {
             // Right button of the mouse is pressed
-            InvalidateRect(hwnd, NULL, TRUE);
+            InvalidateRect(hwnd, NULL, FALSE);
             break;
         }
 
@@ -438,8 +438,8 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
             LPMINMAXINFO winSize = (LPMINMAXINFO) lParam;
             winSize->ptMinTrackSize.x = 510;
             winSize->ptMinTrackSize.y = 375;
-            winSize->ptMaxTrackSize.x = 630;
-            winSize->ptMaxTrackSize.y = 425;
+            winSize->ptMaxTrackSize.x = 830;
+            winSize->ptMaxTrackSize.y = 625;
             break;
         }
 

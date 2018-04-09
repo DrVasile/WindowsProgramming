@@ -36,7 +36,7 @@ void DrawEllipse(HWND hwnd, HDC hdc, HBRUSH hBrush, POINTS ptsBegin, POINTS ptsE
 }
 
 bool Valid(POINTS mouse) {
-    return (mouse.x > 50 && mouse.y > 20);
+    return (mouse.x > 85 && mouse.y > 50);
 }
 
 HBRUSH createBrush(HWND hwnd, COLORREF color) {
