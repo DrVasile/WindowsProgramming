@@ -52,7 +52,7 @@ void Ball::MoveBall(const HDC &hdc, const RECT &rect, HBRUSH &hBrush) {
 }
 
 int Norm(POINT &vect) {
-    return (int) sqrt(vect.x * vect.x + vect.y * vect.y);
+    return (vect.x * vect.x + vect.y * vect.y);
 }
 
 int DotProduct(POINT &first, POINT &second) {
