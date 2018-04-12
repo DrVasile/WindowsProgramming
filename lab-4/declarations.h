@@ -17,8 +17,11 @@ public:
     Ball(POINT, int, int, COLORREF);
     void ChangeColor(const COLORREF &color);
     void ChangeVelocity(const int &newHorVelocity, const int &newVerVelocity);
-    BOOL CollisionWithWall(const RECT &rect);
-void MoveBall(const HDC &hdc, const RECT &rect, HBRUSH &hBrush);
+    void CollisionWithWall(const RECT &rect);
+    void MoveBall(const HDC &hdc, const RECT &rect, HBRUSH &hBrush);
 };
 
-BOOL Collision(Ball &first, Ball &second);
+int Norm(POINT &vect);
+int DotProduct(POINT &first, POINT &second);
+void Collision(Ball &first, Ball &second);
+void ModifyVelocities(Ball &first, Ball &second);

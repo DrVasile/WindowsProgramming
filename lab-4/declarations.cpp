@@ -23,28 +23,20 @@ void Ball::ChangeVelocity(const int &newHorVelocity, const int &newVerVelocity) 
     return;
 }
 
-BOOL Ball::CollisionWithWall(const RECT &rect) {
-    if (this->center.x - (ballRadius / 2) < rect.left) {
+void Ball::CollisionWithWall(const RECT &rect) {
+    if (this->center.x - (ballRadius / 2) < rect.left)
         this->horVelocity = -this->horVelocity;
-        return TRUE;
-    }
 
-    if (this->center.x + (ballRadius / 2) > rect.right) {
+    if (this->center.x + (ballRadius / 2) > rect.right)
         this->horVelocity = -this->horVelocity;
-        return TRUE;
-    }
 
-    if (this->center.y - (ballRadius / 2) < rect.top) {
+    if (this->center.y - (ballRadius / 2) < rect.top)
         this->verVelocity = -this->verVelocity;
-        return TRUE;
-    }
 
-    if (this->center.y + (ballRadius / 2) > rect.bottom) {
+    if (this->center.y + (ballRadius / 2) > rect.bottom)
         this->verVelocity = -this->verVelocity;
-        return TRUE;
-    }
 
-    return FALSE;
+    return;
 }
 
 void Ball::MoveBall(const HDC &hdc, const RECT &rect, HBRUSH &hBrush) {
@@ -59,19 +51,63 @@ void Ball::MoveBall(const HDC &hdc, const RECT &rect, HBRUSH &hBrush) {
     return;
 }
 
+int Norm(POINT &vect) {
+    return (int) sqrt(vect.x * vect.x + vect.y * vect.y);
+}
 
-BOOL Collision(Ball &first, Ball &second) {
+int DotProduct(POINT &first, POINT &second) {
+    return (first.x * second.x) + (first.y * second.y);
+}
+
+void Collision(Ball &first, Ball &second) {
     DOUBLE distance;
     distance = sqrt(pow((DOUBLE) (first.center.x - second.center.x), 2.0) + pow((DOUBLE) (first.center.y - second.center.y), 2.0));
     srand(time(NULL));
-    printf("%lf %d %d %d %d\n", distance, first.center.x, first.center.y, second.center.x, second.center.y);
+    int horResVelocity;
+    int VerResVelocity;
+
     if (distance < (DOUBLE) ballRadius * 2.0) {
-        first.ChangeVelocity(second.horVelocity, second.verVelocity);
-		second.ChangeVelocity(first.horVelocity, first.verVelocity);
+        ModifyVelocities(first, second);
 		first.ChangeColor(RGB(RAND_COLOR, RAND_COLOR, RAND_COLOR));
 		second.ChangeColor(RGB(RAND_COLOR, RAND_COLOR, RAND_COLOR));
-		return TRUE;
     }
 
-    return FALSE;
+    return;
+}
+
+void ModifyVelocities(Ball &first, Ball &second) {
+    int coefficient1;
+    int coefficient2;
+    int dotP;
+    POINT a;
+    POINT b;
+    POINT newV1;
+    POINT newV2;
+    // Calculate velocity of first ball
+    a.x = first.horVelocity - second.horVelocity;
+    a.y = first.verVelocity - second.verVelocity;
+    b.x = first.center.x - second.center.x;
+    b.y = first.center.y - second.center.y;
+    dotP = DotProduct(a, b);
+    dotP = (int) dotP / Norm(b);
+    b.x *= dotP;
+    b.y *= dotP;
+    newV1.x = first.horVelocity - b.x;
+    newV1.y = first.verVelocity - b.y;
+    // Calculate velocity of second ball
+    a.x = second.horVelocity - first.horVelocity;
+    a.y = second.verVelocity - first.verVelocity;
+    b.x = second.center.x - first.center.x;
+    b.y = second.center.y - first.center.y;
+    dotP = DotProduct(a, b);
+    dotP = (int) dotP / Norm(b);
+    b.x *= dotP;
+    b.y *= dotP;
+    newV2.x = second.horVelocity - b.x;
+    newV2.y = second.verVelocity - b.y;
+    first.horVelocity = newV1.x;
+    first.verVelocity = newV1.y;
+    second.horVelocity = newV2.x;
+    second.verVelocity = newV2.y;
+    return;
 }

@@ -80,12 +80,6 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
     switch (message) {
         case WM_CREATE: {
             // Creation of objects
-            /*hdc = GetDC(hwnd);
-            hdcMem = CreateCompatibleDC(hdc);
-            GetClientRect(hwnd, &rect);
-            hBitmap = CreateCompatibleBitmap(hdc, rect.right, rect.bottom);
-            SelectObject(hdcMem, hBitmap);
-            ReleaseDC(hwnd, hdc);*/
             SetTimer (hwnd, IDT_TIMER, timerRate, NULL);
             break;
         }
