@@ -2,3 +2,10 @@
 #include "macros.h"
 
 IDR_ICON ICON "RedBallIcon.ico"
+IDB_NYAN1 BITMAP "nyan1.bmp"
+IDB_NYAN2 BITMAP "nyan2.bmp"
+IDB_NYAN3 BITMAP "nyan3.bmp"
+IDB_NYAN4 BITMAP "nyan4.bmp"
+IDB_NYAN5 BITMAP "nyan5.bmp"
+IDB_NYAN6 BITMAP "nyan6.bmp"
+IDB_NYAN7 BITMAP "nyan7.bmp"

@@ -19,11 +19,15 @@ TCHAR szAppName[] = TEXT("Balls Animation");
 // Vector where we store the balls
 static vector< Ball > balls;
 
+// Instance of the current window
+HINSTANCE hInst;
+
 // Main function
 int WINAPI WinMain(HINSTANCE hThisInstance, HINSTANCE hPrevInstance, LPSTR lpszArgument, int nCmdShow) {
     HWND hwnd;               // This is the handle for our window
     MSG messages;            // Here are saved messages to the application
     WNDCLASSEX wincl;        // Data structure for the windowclass
+    hInst = hThisInstance;
 
     // The Window structure
     wincl.hInstance = hThisInstance;
@@ -70,23 +74,47 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
     HBRUSH hBrush;
     PAINTSTRUCT ps;
     POINT position;
+    static BOOL drawNyan = 0;
     static RECT rect;
     static HDC hdcMem;
     static HBITMAP hBitmap;
+    static HBITMAP nyanBitmaps[7];
     static int timerRate = 10;
     static int nrOfBalls = 0;
+    static int cnt = 0;
+    static int xPos = 0;
 
     // handle the messages
     switch (message) {
         case WM_CREATE: {
             // Creation of objects
+            nyanBitmaps[0] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_NYAN1));
+            nyanBitmaps[1] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_NYAN2));
+            nyanBitmaps[2] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_NYAN3));
+            nyanBitmaps[3] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_NYAN4));
+            nyanBitmaps[4] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_NYAN5));
+            nyanBitmaps[5] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_NYAN6));
+            nyanBitmaps[6] = LoadBitmap(hInst, MAKEINTRESOURCE(IDB_NYAN7));
             SetTimer (hwnd, IDT_TIMER, timerRate, NULL);
+            RegisterHotKey(hwnd, HK_NYAN, MOD_CONTROL, 0x4E);
             break;
         }
 
         case WM_PAINT: {
             hdc = BeginPaint(hwnd, &ps);
             GetClientRect(hwnd,&rect);
+
+            if (drawNyan) {
+                SelectObject(hdcMem, nyanBitmaps[cnt]);
+                BitBlt(hdc, xPos, 0, 200, 300, hdcMem, 0, 0, SRCCOPY);
+                xPos += 10;
+                cnt++;
+                if (cnt == 7)
+                    cnt = 0;
+                EndPaint(hwnd, &ps);
+                break;
+            }
+
             for (int i = 0; i < nrOfBalls - 1; i++)
                 for (int j = i + 1; j < nrOfBalls; j++)
                     Collision(balls[i], balls[j]);
@@ -111,24 +139,17 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
 			break;
         }
 
-        case WM_RBUTTONDOWN: {
-            // Right button of the mouse is pressed
+        case WM_HOTKEY: {
+            switch (wParam) {
+                case HK_NYAN: {
+                    drawNyan = true;
+                    break;
+                }
+
+                default:
+                    break;
+            }
             break;
-        }
-
-        case WM_MOUSEMOVE: {
-            // Mouse has moved
-			break;
-        }
-
-        case WM_LBUTTONUP: {
-            // Left button of the mouse is released
-			break;
-        }
-
-        case WM_RBUTTONUP: {
-            // Left button of the mouse is released
-			break;
         }
 
         case WM_SIZE: {

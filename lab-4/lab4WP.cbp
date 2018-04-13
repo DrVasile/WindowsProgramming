@@ -41,6 +41,9 @@
 		<Unit filename="declarations.h" />
 		<Unit filename="macros.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="resources.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />
