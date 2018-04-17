@@ -4,6 +4,25 @@
              xmlns:local="clr-namespace:lab6WP"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+        <Style x:Key="orangeButtonStyle"  TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="PaleGoldenrod" />
+            <Setter Property="BorderBrush" Value="DarkOrange" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="TextElement.FontWeight" Value="Bold" />
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="PaleGoldenrod" />
+            <Setter Property="BorderBrush" Value="DarkOrange" />
+        </Style>
+
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Background" Value="PaleGoldenrod" />
+            <Setter Property="BorderBrush" Value="DarkOrange" />
+        </Style>
+
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="BorderBrush" Value="DarkOrange" />
+        </Style>
     </Application.Resources>
 </Application>

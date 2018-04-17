@@ -18,3 +18,4 @@ C:\Users\Wazea\Documents\GitHub\WP\lab-6\lab6WP\lab6WP\obj\Debug\lab6WP.csprojRe
 C:\Users\Wazea\Documents\GitHub\WP\lab-6\lab6WP\lab6WP\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Wazea\Documents\GitHub\WP\lab-6\lab6WP\lab6WP\obj\Debug\AddTaskDialog.g.cs
 C:\Users\Wazea\Documents\GitHub\WP\lab-6\lab6WP\lab6WP\obj\Debug\AddTaskDialog.baml
+C:\Users\Wazea\Documents\GitHub\WP\lab-6\lab6WP\lab6WP\obj\Debug\App.baml

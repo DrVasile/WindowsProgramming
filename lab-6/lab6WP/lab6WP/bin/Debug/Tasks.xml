@@ -1,41 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Tasks>
-
   <Task>
-
     <Name>Water Flowers</Name>
-
     <Priority>Medium</Priority>
-
     <Done>No</Done>
-
     <Description>The flowers need to be watered, or else they’ll die.</Description>
-
   </Task>
-
   <Task>
-
     <Name>Eat Breakfast</Name>
-
     <Priority>High</Priority>
-
     <Done>Yes</Done>
-
     <Description>It’s the most important meal of the day.</Description>
-
   </Task>
-
   <Task>
-
     <Name>Buy More Ink</Name>
-
     <Priority>Low</Priority>
-
     <Done>No</Done>
-
     <Description>It’ll be out eventually.</Description>
-
   </Task>
-
 </Tasks>
