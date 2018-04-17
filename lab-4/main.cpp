@@ -107,7 +107,7 @@ LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT message, WPARAM wParam, LPARAM 
             if (drawNyan) {
                 SelectObject(hdcMem, nyanBitmaps[cnt]);
                 BitBlt(hdc, xPos, 0, 200, 300, hdcMem, 0, 0, SRCCOPY);
-                xPos += 10;
+                xPos += 50;
                 cnt++;
                 if (cnt == 7)
                     cnt = 0;
